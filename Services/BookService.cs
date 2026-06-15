@@ -115,4 +115,46 @@ public class BookService
             NeedReorderCount = needReorderCount
         };
     }
+
+    public List<Book> Search(string? keyword, decimal? minPrice)
+    {
+        var query = _Books.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(keyword))
+        {
+            query = query.Where(Book =>
+                Book.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                Book.Category.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (minPrice.HasValue)
+        {
+            query = query.Where(Book => Book.Price >= minPrice.Value);
+        }
+
+        return query.ToList();
+    }
+
+    public Book Create(BookCreateViewModel model)
+    {
+        var newId = _Books.Count == 0
+            ? 1
+            : _Books.Max(Book => Book.Id) + 1;
+
+        var Book = new Book
+        {
+            Id = newId,
+            Name = model.Name,
+            Category = model.Category,
+            Author = model.Author,
+            Price = model.Price,
+            Quantity = model.Quantity,
+            MinStock = model.MinStock,
+            UpdatedAt = DateTime.Now
+        };
+
+        _Books.Add(Book);
+
+        return Book;
+    }
 }

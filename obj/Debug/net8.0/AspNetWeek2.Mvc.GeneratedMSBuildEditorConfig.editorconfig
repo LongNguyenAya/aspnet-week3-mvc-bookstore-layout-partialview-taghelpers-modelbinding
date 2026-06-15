@@ -18,12 +18,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\Coding Stuffs\ASP.NETCore\Lab02\AspNetWeek2.Mvc
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Books/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Books/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Books/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Books/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcU2VhcmNoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Books/Stats.cshtml]
@@ -40,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Shared/_BookCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Cb29rQ2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Shared/_ValidationScriptsPartial.cshtml]

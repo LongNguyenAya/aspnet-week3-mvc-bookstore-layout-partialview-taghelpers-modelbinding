@@ -9,65 +9,47 @@
     <div>
         <h2 class="page-title">Book Catalog</h2>
         <p class="page-description">
-            Đây là trang danh sách các quyển sách của cửa hàng.
+            Đây là trang danh sách sản phẩm của cửa hàng.
+            Giao diện được render bằng Partial View.
         </p>
     </div>
 
     <div>
-        <a class="btn btn-primary" href="/Books/Stats">
-            Xem thống kê tồn kho
+        <a class="btn btn-secondary"
+           asp-controller="Books"
+           asp-action="Search">
+            Search Book
+        </a>
+
+        <a class="btn"
+           asp-controller="Books"
+           asp-action="Create">
+            Create Book
         </a>
     </div>
 </div>
 
-<div class="info-panel">
-    <strong>Tổng số sách:</strong> @totalItems
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="success-box">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="info-box">
+    <strong>Tổng số sản phẩm:</strong> @totalItems
 </div>
 
 @if (Model.Count == 0)
 {
-    <p>Chưa có quyển sách nào trong hệ thống.</p>
+    <p>Chưa có sản phẩm nào trong hệ thống.</p>
 }
 else
 {
-    <table class="table table-bordered table-striped align-middle">
-        <thead>
-            <tr>
-                <th>Tên sách</th>
-                <th>Nhóm</th>
-                <th>Giá bán</th>
-                <th>Số lượng</th>
-                <th>Giá trị tồn kho</th>
-                <th>Trạng thái</th>
-                <th>Chi tiết</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Category</td>
-                    <td>@item.PriceText</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.InventoryValueText</td>
-                    <td>
-                        <span class="@item.StockStatusClass">
-                            @item.StockStatus
-                        </span>
-                    </td>
-                    <td>
-                        <a href="/Books/Detail/@item.Id">Xem</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="Book-grid">
+        @foreach (var item in Model)
+        {
+            <partial name="_BookCard" model="item" />
+        }
+    </div>
 }
-
-<p class="mt-4">
-    <a class="btn btn-light" href="/">
-        Quay lại trang chủ
-    </a>
-</p>

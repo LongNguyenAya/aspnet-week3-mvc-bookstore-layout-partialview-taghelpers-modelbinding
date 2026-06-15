@@ -103,4 +103,49 @@ public class BooksController : Controller
             UpdatedAt = Book.UpdatedAt
         };
     }
+
+    [HttpGet]
+    public IActionResult Search(string? keyword, decimal? minPrice)
+    {
+        var Books = _BookService.Search(keyword, minPrice)
+            .Select(ToListItemViewModel)
+            .ToList();
+
+        var viewModel = new BookSearchViewModel
+        {
+            Keyword = keyword ?? "",
+            MinPrice = minPrice,
+            Books = Books
+        };
+
+        return View(viewModel);
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        var viewModel = new BookCreateViewModel
+        {
+            Quantity = 1,
+            MinStock = 1
+        };
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(BookCreateViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        _BookService.Create(model);
+
+        TempData["SuccessMessage"] = "Đã thêm sách thành công.";
+
+        return RedirectToAction(nameof(Index));
+    }
 }

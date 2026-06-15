@@ -28,3 +28,4 @@ E:\Coding Stuffs\ASP.NETCore\Lab02\AspNetWeek2.Mvc\obj\Debug\net8.0\refint\AspNe
 E:\Coding Stuffs\ASP.NETCore\Lab02\AspNetWeek2.Mvc\obj\Debug\net8.0\AspNetWeek2.Mvc.pdb
 E:\Coding Stuffs\ASP.NETCore\Lab02\AspNetWeek2.Mvc\obj\Debug\net8.0\AspNetWeek2.Mvc.genruntimeconfig.cache
 E:\Coding Stuffs\ASP.NETCore\Lab02\AspNetWeek2.Mvc\obj\Debug\net8.0\ref\AspNetWeek2.Mvc.dll
+E:\Coding Stuffs\ASP.NETCore\Lab02\AspNetWeek2.Mvc\obj\Debug\net8.0\AspNetWeek2.Mvc.sourcelink.json
