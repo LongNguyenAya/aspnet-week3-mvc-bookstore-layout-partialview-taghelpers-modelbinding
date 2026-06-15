@@ -1,0 +1,41 @@
+@model AspNetWeek2.Mvc.ViewModels.OrderCreateViewModel
+
+<div class="container mt-5">
+    <div class="card shadow-lg" style="max-width: 550px; margin: auto; border-radius: 12px;">
+        <div class="card-header bg-primary text-white text-center py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
+            <h3 class="card-title mb-0">Hệ Thống Đặt Hàng</h3>
+        </div>
+        <div class="card-body p-4">
+            
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger shadow-sm mb-4"></div>
+            }
+
+            <form asp-action="Create" method="post">
+                
+                <div class="mb-4">
+                    <label asp-for="BookId" class="form-label fw-bold text-secondary">Chọn Sách Cần Mua:</label>
+                    <select asp-for="BookId" class="form-select form-select-lg shadow-sm" asp-items="ViewBag.Books">
+                        <option value="">-- Chọn một cuốn sách đang có trong kho --</option>
+                    </select>
+                    <span asp-validation-for="BookId" class="text-danger small mt-1 d-block"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Quantity" class="form-label fw-bold text-secondary">Số Lượng Đặt Mua:</label>
+                    <input asp-for="Quantity" type="number" class="form-control form-control-lg shadow-sm" value="1" min="1" />
+                    <span asp-validation-for="Quantity" class="text-danger small mt-1 d-block"></span>
+                </div>
+
+                <div class="d-grid gap-2 mt-5">
+                    <button type="submit" class="btn btn-success btn-lg shadow-sm fw-bold py-2">
+                        Xác Nhận Đặt Hàng (Chạy Transaction)
+                    </button>
+                    <a href="/Books" class="btn btn-outline-secondary btn-md mt-2">Quay lại danh sách sách</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

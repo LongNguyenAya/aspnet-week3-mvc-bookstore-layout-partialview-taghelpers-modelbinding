@@ -1,118 +1,65 @@
 using AspNetWeek2.Mvc.Models;
 using AspNetWeek2.Mvc.ViewModels;
+using AspNetWeek2.Mvc.Repositories;
+using Microsoft.Extensions.Options;
 
 namespace AspNetWeek2.Mvc.Services;
 
-public class BookService
+public class BookService : IBookService
 {
-    private readonly List<Book> _Books = new()
-    {
-        new Book
-        {
-            Id = 1,
-            Name = "Toán lớp 1",
-            Category = "Giáo dục",
-            Author = "Kim Đồng",
-            Price = 20000,
-            Quantity = 20,
-            MinStock = 3,
-            CreatedAt = new DateTime(2025, 5, 9, 9, 12, 0),
-            UpdatedAt = DateTime.Now
-        },
-        new Book
-        {
-            Id = 2,
-            Name = "Ngữ văn lớp 10",
-            Category = "Giáo dục",
-            Author = "Kim Đồng",
-            Price = 35000,
-            Quantity = 4,
-            MinStock = 5,
-            CreatedAt = new DateTime(2025, 5, 9, 9, 12, 0),
-            UpdatedAt = DateTime.Now
-        },
-        new Book
-        {
-            Id = 3,
-            Name = "Sống mòn",
-            Category = "Tiểu thuyết",
-            Author = "Nam Cao",
-            Price = 98000,
-            Quantity = 5,
-            MinStock = 3,
-            CreatedAt = new DateTime(2025, 5, 9, 9, 12, 0),
-            UpdatedAt = DateTime.Now
-        },
-        new Book
-        {
-            Id = 4,
-            Name = "Bạch tuyết và bảy chú lùn",
-            Category = "Truyện tranh",
-            Author = "Anh em nhà Grimm",
-            Price = 20000,
-            Quantity = 9,
-            MinStock = 4,
-            CreatedAt = new DateTime(2025, 5, 9, 9, 12, 0),
-            UpdatedAt = DateTime.Now
-        },
-        new Book
-        {
-            Id = 5,
-            Name = "Cho tôi xin một vé đi tuổi thơ",
-            Category = "Tiểu thuyết",
-            Author = "Nguyễn Nhật Ánh",
-            Price = 100000,
-            Quantity = 2,
-            MinStock = 6,
-            CreatedAt = new DateTime(2025, 5, 9, 9, 12, 0),
-            UpdatedAt = DateTime.Now
-        },
-        new Book
-        {
-            Id = 6,
-            Name = "Con cáo và chùm nho",
-            Category = "Truyện tranh",
-            Author = "Aesop",
-            Price = 10000,
-            Quantity = 7,
-            MinStock = 3,
-            CreatedAt = new DateTime(2025, 5, 9, 9, 12, 0),
-            UpdatedAt = DateTime.Now
-        }
-    };
+    private readonly IBookRepository _bookRepository;
+    private readonly AppSettings _settings;
 
-    public List<Book> GetAll()
+    public BookService(IBookRepository bookRepository, IOptions<AppSettings> options)
     {
-        return _Books;
+        _bookRepository = bookRepository;
+        _settings = options.Value;
     }
 
-    public Book? GetById(int id)
+    public async Task<List<BookListItemViewModel>> GetBookListAsync()
     {
-        return _Books.FirstOrDefault(Book => Book.Id == id);
+        var books = await _bookRepository.GetAllReadOnlyAsync();
+        return books.Select(p => new BookListItemViewModel
+        {
+            Id = p.Id,
+            Name = p.Name,
+            Price = p.Price,
+            Quantity = p.Quantity,
+            MinStock = p.MinStock,
+            Category = p.Category != null ? p.Category.Name : "N/A"
+        }).ToList();
     }
 
-    public BookStatsViewModel GetStats()
+    public async Task<BookDetailViewModel?> GetBookDetailAsync(int id)
     {
-        var totalBooks = _Books.Count;
+        var book = await _bookRepository.GetByIdAsync(id);
+        if (book == null) return null;
 
-        var totalQuantity = _Books.Sum(Book => Book.Quantity);
-
-        var totalInventoryValue = _Books.Sum(Book =>
-            Book.Price * Book.Quantity);
-
-        var outOfStockCount = _Books.Count(Book =>
-            Book.Quantity <= 0);
-
-        var needReorderCount = _Books.Count(Book =>
-            Book.Quantity > 0 && Book.Quantity <= Book.MinStock);
-
-        return new BookStatsViewModel
+        return new BookDetailViewModel
         {
-            TotalBooks = totalBooks,
-            TotalQuantity = totalQuantity,
-            TotalInventoryValue = totalInventoryValue,
-            OutOfStockCount = outOfStockCount,
-            NeedReorderCount = needReorderCount
+            Id = book.Id,
+            Name = book.Name,
+            Author = book.Author,
+            Price = book.Price,
+            Quantity = book.Quantity,
+            MinStock = _settings.LowStockThreshold, 
+            Category = book.Category != null ? book.Category.Name : "N/A",
+            CreatedAt = DateTime.Now, 
+            UpdatedAt = DateTime.Now
         };
+    }
+
+    public async Task<List<BookListItemViewModel>> GetFilteredBooksAsync(int? categoryId, decimal? minPrice, decimal? maxPrice)
+    {
+        var books = await _bookRepository.GetFilteredBooksAsync(categoryId, minPrice, maxPrice);
+
+        return books.Select(b => new BookListItemViewModel
+        {
+            Id = b.Id,
+            Name = b.Name,
+            Price = b.Price,
+            Quantity = b.Quantity,
+            Category = b.Category != null ? b.Category.Name : "N/A"
+        }).ToList();
     }
 }

@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\Coding Stuffs\ASP.NETCore\Lab02\AspNetWeek2.Mvc
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/BookCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va0NhdGVnb3JpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Books/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,12 +34,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcU3RhdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/DataHealth/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YUhlYWx0aFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Orders/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Coding Stuffs/ASP.NETCore/Lab02/AspNetWeek2.Mvc/Views/Shared/Error.cshtml]

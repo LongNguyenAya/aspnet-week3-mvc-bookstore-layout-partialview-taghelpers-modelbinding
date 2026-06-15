@@ -1,0 +1,30 @@
+@model List<AspNetWeek2.Mvc.Models.BookCategoryReportViewModel>
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            <h3 class="card-title mb-0">Danh Sách Thể Loại Sách (Category Report)</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover mt-2">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tên Thể Loại (Category Name)</th>
+                        <th class="text-center" style="width: 25%">Số Lượng Sách Hiện Có</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CategoryName</td>
+                            <td class="text-center">
+                                <span class="badge bg-info text-dark fs-6">@item.BookCount cuốn</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

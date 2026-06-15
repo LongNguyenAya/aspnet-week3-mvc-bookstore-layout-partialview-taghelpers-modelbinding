@@ -65,4 +65,6 @@ public class BookDetailViewModel
             return "Tồn kho đang ổn định, chưa cần nhập thêm.";
         }
     }
+
+    
 }
